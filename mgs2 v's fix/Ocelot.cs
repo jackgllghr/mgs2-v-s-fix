@@ -28,6 +28,10 @@ namespace mgs2_v_s_fix
         // Hide background images and more "appariscent" graphical things
         public static bool NOSYMODE = false;
 
+        // public const string EXECUTABLE = "mgs2_sse.exe";
+        public const string EXECUTABLE = "solid_mods_loader.exe";
+
+
         // UPDATE
 
         public const string GITHUB_API = "https://api.github.com/repos/VFansss/mgs2-v-s-fix/releases/latest";
@@ -62,7 +66,7 @@ namespace mgs2_v_s_fix
 
             try
             {
-                cmd = Process.Start(new ProcessStartInfo("mgs2_sse.exe"));
+                cmd = Process.Start(new ProcessStartInfo(EXECUTABLE));
                 Application.Exit();
             }
             catch
@@ -539,7 +543,7 @@ namespace mgs2_v_s_fix
                     PrintToDebugConsole("[ EXE OPENING ] Open the game EXE for writing operations...");
 
                     
-                    using (var stream = new FileStream(Application.StartupPath + "\\mgs2_sse.exe", FileMode.Open, FileAccess.ReadWrite))
+                    using (var stream = new FileStream(Application.StartupPath + "\\" + EXECUTABLE, FileMode.Open, FileAccess.ReadWrite))
                     {
                         #region FIX FOR ATI/NVIDIA
 
@@ -2083,7 +2087,7 @@ namespace mgs2_v_s_fix
             try
             {
                 string registry_path = "Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers\\";
-                string game_exe_path = Application.StartupPath + "\\mgs2_sse.exe";
+                string game_exe_path = Application.StartupPath + "\\" + EXECUTABLE;
                 Microsoft.Win32.RegistryKey key;
 
                 key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(registry_path);
@@ -2118,7 +2122,7 @@ namespace mgs2_v_s_fix
             try
             {
                 string registry_path = "Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers\\";
-                string game_exe_path = Application.StartupPath + "\\mgs2_sse.exe";
+                string game_exe_path = Application.StartupPath + "\\" + EXECUTABLE;
                 Microsoft.Win32.RegistryKey key;
 
                 key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(registry_path);
@@ -2172,7 +2176,7 @@ namespace mgs2_v_s_fix
             try
             {
                 string registry_path = "Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers\\";
-                string game_exe_path = Application.StartupPath + "\\mgs2_sse.exe";
+                string game_exe_path = Application.StartupPath + "\\" + EXECUTABLE;
                 Microsoft.Win32.RegistryKey key;
 
                 key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(registry_path);
@@ -2661,7 +2665,7 @@ namespace mgs2_v_s_fix
 
                     // CHECK: Is METAL GEAR SOLID 2: SUBSTANCE already inserted in the past?
 
-                    if (entireFile.Contains("METAL GEAR SOLID 2: SUBSTANCE") && entireFile.Contains("mgs2_sse.exe"))
+                    if (entireFile.Contains("METAL GEAR SOLID 2: SUBSTANCE") && entireFile.Contains(EXECUTABLE))
                     {
                         // Yup :D
                         continue;
@@ -2691,7 +2695,7 @@ namespace mgs2_v_s_fix
                         writeThis.Add(SOH);
                         writeThis.AddRange(Encoding.Default.GetBytes("exe").ToList());
                         writeThis.Add(NUL);
-                        writeThis.AddRange(Encoding.Default.GetBytes(Sanitize_pathForCMD(MGS2Path+"mgs2_sse.exe")).ToList());
+                        writeThis.AddRange(Encoding.Default.GetBytes(Sanitize_pathForCMD(MGS2Path+EXECUTABLE)).ToList());
                         writeThis.Add(NUL);
                         writeThis.Add(SOH);
                         writeThis.AddRange(Encoding.Default.GetBytes("StartDir").ToList());
